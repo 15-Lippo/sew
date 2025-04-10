@@ -1,6 +1,6 @@
 let wallet = null;
 const FEE_PERCENTAGE = 0.22;
-const FEE_WALLET = "EPqPP8mSk4bFNfk5cAg9hGR6XPLwh9Rp3Lo4wDiLEdrZ";
+const FEE_WALLET = window.FEE_WALLET || "EPqPP8mSk4bFNfk5cAg9hGR6XPLwh9Rp3Lo4wDiLEdrZ";
 
 // Elementi UI
 const connectButton = document.getElementById('wallet-connect');
