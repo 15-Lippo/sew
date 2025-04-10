@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "index.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.js"
+    }
+  ],
+  "env": {
+    "SOLANA_RPC_URL": "@solana_rpc_url",
+    "WALLET_PRIVATE_KEY": "@wallet_private_key"
+  }
+} 
