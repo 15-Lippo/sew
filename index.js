@@ -22,7 +22,14 @@ const {
 const { SOLANA_RPC_URL, WALLET_PRIVATE_KEY, FEE_WALLET, FEE_PERCENTAGE } = require("./config");
 const bs58 = require('bs58');
 
-const connection = new Connection(SOLANA_RPC_URL, { commitment: 'confirmed' });
+const connection = new Connection(SOLANA_RPC_URL, {
+  commitment: 'confirmed',
+  wsEndpoint: SOLANA_RPC_URL.replace('https', 'wss'),
+  disableRetryOnRateLimit: false,
+  httpHeaders: {
+    'Content-Type': 'application/json'
+  }
+});
 const wallet = Keypair.fromSecretKey(
   new Uint8Array(JSON.parse(WALLET_PRIVATE_KEY))
 );
