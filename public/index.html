@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binar Swap</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="./assets/logo.svg">
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+    <nav class="bg-gray-800 p-4">
+        <div class="container mx-auto flex items-center justify-between">
+            <div class="flex items-center">
+                <img src="./assets/logo.svg" alt="Binar Logo" class="h-8 w-8 mr-2">
+                <span class="text-xl font-bold">Binar Swap</span>
+            </div>
+            <div id="wallet-connect" class="px-4 py-2 bg-purple-600 rounded-lg cursor-pointer hover:bg-purple-700">
+                Connect Wallet
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-8">
+        <div class="max-w-lg mx-auto bg-gray-800 rounded-lg p-6">
+            <h2 class="text-2xl font-bold mb-6">Swap Tokens</h2>
+            
+            <div class="space-y-4">
+                <div class="bg-gray-700 p-4 rounded-lg">
+                    <div class="flex justify-between mb-2">
+                        <span>From</span>
+                        <span>Balance: <span id="from-balance">0.00</span></span>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="number" id="from-amount" class="bg-gray-600 rounded p-2 w-full mr-2" placeholder="0.00">
+                        <select id="from-token" class="bg-gray-600 rounded p-2">
+                            <option value="SOL">SOL</option>
+                            <!-- Altri token verranno aggiunti dinamicamente -->
+                        </select>
+                    </div>
+                </div>
+
+                <button id="swap-direction" class="mx-auto block p-2 hover:bg-gray-700 rounded-full">
+                    ↓
+                </button>
+
+                <div class="bg-gray-700 p-4 rounded-lg">
+                    <div class="flex justify-between mb-2">
+                        <span>To</span>
+                        <span>Balance: <span id="to-balance">0.00</span></span>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="number" id="to-amount" class="bg-gray-600 rounded p-2 w-full mr-2" placeholder="0.00" readonly>
+                        <select id="to-token" class="bg-gray-600 rounded p-2">
+                            <option value="USDC">USDC</option>
+                            <!-- Altri token verranno aggiunti dinamicamente -->
+                        </select>
+                    </div>
+                </div>
+
+                <div class="bg-gray-700 p-4 rounded-lg">
+                    <div class="flex justify-between mb-2">
+                        <span>Price Impact</span>
+                        <span id="price-impact">0.00%</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Fee (0.22%)</span>
+                        <span id="fee-amount">0.00</span>
+                    </div>
+                </div>
+
+                <button id="swap-button" class="w-full bg-purple-600 text-white py-3 rounded-lg font-bold hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed">
+                    Swap
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@project-serum/anchor@0.24.2/dist/browser/anchor.min.js"></script>
+    <script src="./js/app.js"></script>
+
+    <h1>Binar Swap Platform</h1>
+    <div id="status"></div>
+
+    <script>
+        // Test API connection
+        fetch('/api')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('status').textContent = data.message;
+            })
+            .catch(error => {
+                document.getElementById('status').textContent = 'Error: ' + error.message;
+            });
+    </script>
+</body>
+</html> 
